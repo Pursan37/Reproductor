@@ -104,3 +104,6 @@ class ArtistaViewSet(viewsets.ModelViewSet):
 			except Exception as e:
 				respuesta=Estructura.error500()				
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
+
+def inicioView(request):
+	return render(request,'artista/index.html',{'modelo':'artista'})
