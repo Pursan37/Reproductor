@@ -1,22 +1,24 @@
-function ArtistaViewModel() {
+function AlbumViewModel() {
 	var self = this;
 	self.id = ko.observable(0);
 	self.nombre = ko.observable('');
+    self.artista = ko.observable('');
+
 
 	self.url=path_principal+'/api/';
 	self.listado=ko.observableArray([]);
 	self.mensaje=ko.observable('');
-            
-   	self.filtro_artista={
+
+   	self.filtro_album={
         dato:ko.observable(''),
         id:ko.observable(''),
     };
 
 	self.consultar = function(pagina){
 		if (pagina > 0){
-			self.filtro_artista.dato($('#txtBuscar').val());
-			path = self.url+'artista/?format=json';
-            parameter = { dato: self.filtro_artista.dato(),
+			self.filtro_album.dato($('#txtBuscar').val());
+			path = self.url+'album/?format=json';
+            parameter = { dato: self.filtro_album.dato(),
                           page: pagina 
                         };
             RequestGet(function (datos, estado, mensage) {
@@ -35,5 +37,5 @@ function ArtistaViewModel() {
 	}
 }
 
-var artista = new ArtistaViewModel();
-ko.applyBindings(artista);
+var album = new AlbumViewModel();
+ko.applyBindings(album);

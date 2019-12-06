@@ -1,0 +1,51 @@
+{% extends 'page.html' %}
+{% load staticfiles %}
+
+{% block title %}Inicio{% endblock title %}
+
+{% block tituloPagina %}Cancion{% endblock tituloPagina %}
+
+
+{% block contenido %}
+<div data-bind="visible: (listado() != null)">
+		<table>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>titulo</th>
+					<th>track_file</th>
+					<th>album</th>
+					<th>artista</th> 
+				</tr>
+			</thead>
+			<tbody data-bind="foreach:{data:listado, as:'item'}">
+				<tr>
+					<td data-bind="text: item.id"></td>
+					<td data-bind="text: item.titulo"></td>
+					<td data-bind="text: item.track_file"></td>
+					<td data-bind="text: item.album"></td>
+					<td data-bind="text: item.artista"></td>	
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+
+{% endblock contenido %}
+
+
+
+{%block imports %}
+	<script type="text/javascript" src='{% static "js/ViewModels/cancion/cancion.js" %}'></script>
+
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        cancion.consultar(1);//iniciamos la primera funcion
+        
+        
+    });  
+
+  </script>
+{% endblock imports %}
