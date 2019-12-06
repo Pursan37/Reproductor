@@ -33,6 +33,13 @@ function ArtistaViewModel() {
 		}
 
 	}
+    self.consulta_enter = function (d,e) {
+        if (e.which == 13) {
+            self.filtro_artista.dato($('#txtBuscar').val());
+            self.consultar(1);
+        }
+        return true;
+    }
 }
 
 var artista = new ArtistaViewModel();

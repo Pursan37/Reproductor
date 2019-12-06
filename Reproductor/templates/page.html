@@ -50,9 +50,7 @@
 
 							<!-- Search -->
 								<section id="search" class="alt">
-									<form method="post" action=".">{% csrf_token %}
-										<input type="text" name="txtBuscar" id="txtBuscar" placeholder="Search" />
-									</form>
+									<input type="text" name="txtBuscar" id="txtBuscar" placeholder="Buscar..." data-bind='event:{keypress: $root.consulta_enter}' />
 								</section>
 
 							<!-- Menu -->
