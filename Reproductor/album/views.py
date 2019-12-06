@@ -27,15 +27,12 @@ class AlbumViewSet(viewsets.ModelViewSet):
 		try:
 			queryset = super(AlbumViewSet, self).get_queryset()
 			dato = self.request.query_params.get('dato', None)
-			page = self.request.query_params.get('page', None)			
-			artista = self.request.query_params.get('artista', None)
+			page = self.request.query_params.get('page', None)		
 			ID = self.request.query_params.get('id', None)
 
 			qset = (~Q(id = 0))
 			if dato:
 				qset = qset & (Q(nombre__icontains=dato) | (Q(artista__nombre__icontains=dato)))	
-			if artista:
-				qset = qset & Q(artista__id=artista)
 			if ID:
 				qset = qset & Q(id=ID)
 
@@ -108,4 +105,7 @@ class AlbumViewSet(viewsets.ModelViewSet):
 			except Exception as e:
 				respuesta=Estructura.error500()				
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
+
+def inicioView(request):
+	return render(request,'album/album.html',{'modelo':'album'})
 # Create your views here.

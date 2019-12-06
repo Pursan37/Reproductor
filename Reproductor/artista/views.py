@@ -106,4 +106,4 @@ class ArtistaViewSet(viewsets.ModelViewSet):
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 
 def inicioView(request):
-	return render(request,'artista/index.html',{'modelo':'artista'})
+	return render(request,'artista/artista.html',{'modelo':'artista'})

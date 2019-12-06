@@ -27,18 +27,12 @@ class CancionViewSet(viewsets.ModelViewSet):
 		try:
 			queryset = super(CancionViewSet, self).get_queryset()
 			dato = self.request.query_params.get('dato', None)
-			page = self.request.query_params.get('page', None)
-			artista = self.request.query_params.get('artista', None)
-			album = self.request.query_params.get('album', None)
+			page = self.request.query_params.get('page', None)			
 			ID = self.request.query_params.get('id', None)
 
 			qset = (~Q(id = 0))
 			if dato:
-				qset = qset & (Q(titulo__icontains=dato) | (Q(artista__nombre__icontains=dato)))	
-			if artista:
-				qset = qset & Q(artista__id=artista)
-			if album:
-				qset = qset & Q(album__id=album)
+				qset = qset & (Q(titulo__icontains=dato) | (Q(artista__nombre__icontains=dato) | (Q(album__nombre__icontains=dato) ) ) )	
 			if ID:
 				qset = qset & Q(id=ID)
 
@@ -111,3 +105,6 @@ class CancionViewSet(viewsets.ModelViewSet):
 			except Exception as e:
 				respuesta=Estructura.error500()				
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
+
+def inicioView(request):
+	return render(request,'cancion/cancion.html',{'modelo':'cancion'})

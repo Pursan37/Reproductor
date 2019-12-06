@@ -3,22 +3,24 @@
 
 {% block title %}Inicio{% endblock title %}
 
-{% block tituloPagina %}Artista{% endblock tituloPagina %}
+{% block tituloPagina %}Album{% endblock tituloPagina %}
 
 
 {% block contenido %}
-	<div data-bind="visible: (listado() != null)">
+<div data-bind="visible: (listado() != null)">
 		<table>
 			<thead>
 				<tr>
 					<th>id</th>
 					<th>nombre</th>
+					<th>artista</th>
 				</tr>
 			</thead>
 			<tbody data-bind="foreach:{data:listado, as:'item'}">
 				<tr>
 					<td data-bind="text: item.id"></td>
 					<td data-bind="text: item.nombre"></td>
+					<td data-bind="text: item.artista"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -27,14 +29,16 @@
 
 {% endblock contenido %}
 
+
+
 {%block imports %}
-	<script type="text/javascript" src='{% static "js/ViewModels/artista/artista.js" %}'></script>
+	<script type="text/javascript" src='{% static "js/ViewModels/album/album.js" %}'></script>
 
   <script type="text/javascript">
 
     $(document).ready(function () {
 
-        artista.consultar(1);//iniciamos la primera funcion
+        album.consultar(1);//iniciamos la primera funcion
         
         
     });  
