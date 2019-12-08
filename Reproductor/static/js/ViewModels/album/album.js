@@ -2,7 +2,7 @@ function AlbumViewModel() {
 	var self = this;
 	self.id = ko.observable(0);
 	self.nombre = ko.observable('');
-    self.artista = ko.observable('');
+    self.artista_nombre = ko.observable('');
 
 
 	self.url=path_principal+'/api/';
@@ -35,7 +35,15 @@ function AlbumViewModel() {
 		}
 
 	}
+    self.consulta_enter = function (d,e) {
+        if (e.which == 13) {
+            self.filtro_album.dato($('#txtBuscar').val());
+            self.consultar(1);
+        }
+        return true;
+    }
 }
+
 
 var album = new AlbumViewModel();
 ko.applyBindings(album);

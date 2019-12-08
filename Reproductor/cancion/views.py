@@ -32,7 +32,7 @@ class CancionViewSet(viewsets.ModelViewSet):
 
 			qset = (~Q(id = 0))
 			if dato:
-				qset = qset & (Q(titulo__icontains=dato) | (Q(artista__nombre__icontains=dato) | (Q(album__nombre__icontains=dato) ) ) )	
+				qset = qset & (Q(titulo__icontains=dato) | (Q(album__artista__nombre__icontains=dato) | (Q(album__nombre__icontains=dato) ) ) )	
 			if ID:
 				qset = qset & Q(id=ID)
 

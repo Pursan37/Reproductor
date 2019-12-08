@@ -2,7 +2,7 @@ function CancionViewModel() {
 	var self = this;
 	self.id = ko.observable(0);
 	self.titulo = ko.observable('');
-    self.track_file = ko.observable('');
+    self.track_file = ko.observable('');    
     self.artista = ko.observable('');
     self.album = ko.observable('');
 
@@ -36,6 +36,13 @@ function CancionViewModel() {
 		}
 
 	}
+    self.consulta_enter = function (d,e) {
+        if (e.which == 13) {
+            self.filtro_cancion.dato($('#txtBuscar').val());
+            self.consultar(1);
+        }
+        return true;
+    }    
 }
 
 var cancion = new CancionViewModel();

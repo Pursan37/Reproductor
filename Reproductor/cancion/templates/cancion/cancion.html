@@ -13,18 +13,21 @@
 				<tr>
 					<th>id</th>
 					<th>titulo</th>
-					<th>track_file</th>
+					<th>track_file</th>		
+					<th>player</th>				
 					<th>album</th>
 					<th>artista</th> 
 				</tr>
 			</thead>
 			<tbody data-bind="foreach:{data:listado, as:'item'}">
 				<tr>
+						
 					<td data-bind="text: item.id"></td>
 					<td data-bind="text: item.titulo"></td>
 					<td data-bind="text: item.track_file"></td>
+					<td><audio controls><source src=""  type="audio/mpeg"></audio></td>
 					<td data-bind="text: item.album.nombre"></td>
-					<td data-bind="text: item.album.artista.nombre"></td>	
+					<td data-bind="text: item.album.artista.nombre"></td>		
 				</tr>
 			</tbody>
 		</table>
