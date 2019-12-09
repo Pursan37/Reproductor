@@ -7,7 +7,7 @@ class Cancion(models.Model):
 	titulo = models.CharField(max_length=255)
 	track_file = models.FileField(upload_to='Cancion')
 	album = models.ForeignKey(Album, on_delete=models.PROTECT)
-	artista = models.ForeignKey(Artista, on_delete=models.PROTECT)
+	
 	def player(self):
 		mystr = '<audio controls><source src="%s" type="audio/mpeg"></audio>'% self.track_file.url
 		mystr = mark_safe(mystr)
@@ -15,7 +15,7 @@ class Cancion(models.Model):
 	player.allow_tags = True
 	player.admin_order_field = 'track_file'	
 	def __str__(self):
-		return self.titulo + ' de ' + self.artista.nombre
+		return self.titulo + ' de ' + self.album.nombre
 
 	class Meta: 
 		db_table = 'cancion'	

@@ -47,3 +47,15 @@ function CancionViewModel() {
 
 var cancion = new CancionViewModel();
 ko.applyBindings(cancion);
+
+ko.bindingHandlers.audio = {
+    init: function (element, valueAccessor) {
+        var config = ko.unwrap(valueAccessor());
+        var file = config.sound;
+        var observable = config.value;
+        observable.subscribe(function () {
+            var audio = new Audio(file);
+            audio.play();
+        });
+    }
+};
