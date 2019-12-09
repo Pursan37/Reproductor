@@ -3,7 +3,7 @@
 
 {% block title %}Inicio{% endblock title %}
 
-{% block tituloPagina %}Album{% endblock tituloPagina %}
+{% block tituloPagina %}Albumnes{% endblock tituloPagina %}
 
 
 {% block contenido %}
@@ -20,7 +20,7 @@
 				<tr>
 					<td data-bind="text: item.id"></td>
 					<td data-bind="text: item.nombre"></td>
-					<td data-bind="text: item.artista"></td>
+					<td data-bind="text: item.artista.nombre"></td>
 				</tr>
 			</tbody>
 		</table>

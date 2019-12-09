@@ -9,11 +9,11 @@ class CancionSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Cancion
-		fields = ('id', 'titulo', 'track_file', 'album', 'album_id',)
+		fields = ('id', 'titulo', 'track_file', 'album', 'album_id')
 
 class CancionLiteSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Cancion
-		fields = ('id', 'titulo', 'track_file', )
+		fields = ('id', 'titulo', )
 
 	
