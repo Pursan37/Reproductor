@@ -107,3 +107,5 @@ class ArtistaViewSet(viewsets.ModelViewSet):
 
 def inicioView(request):
 	return render(request,'artista/artista.html',{'modelo':'artista'})
+def registroView(request):
+	return render(request, 'artista/registro.html',{'modelo':'artista'})

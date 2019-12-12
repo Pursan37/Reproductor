@@ -12,6 +12,71 @@ function ArtistaViewModel() {
         id:ko.observable(''),
     };
 
+    self.artistaVO={
+        id:ko.observable(0),
+        nombre:ko.observable('').extend({ required: { message: ' Digite el nombre del proyecto.' } }),
+        
+
+     };
+    
+/*    self.paginacion = {
+        pagina_actual: ko.observable(1),
+        total: ko.observable(0),
+        maxPaginas: ko.observable(5),
+        directiones: ko.observable(true),
+        limite: ko.observable(true),
+        cantidad_por_paginas: ko.observable(0),
+        text: {
+            first: ko.observable('Inicio'),
+            last: ko.observable('Fin'),
+            back: ko.observable('<'),
+            forward: ko.observable('>')
+        }
+    };*/
+
+    self.limpiar=function(){                  
+        self.artistaVO.id(0);
+        self.artistaVO.nombre('');
+    }     
+    self.guardar=function(){
+
+        if (ArtistaViewModel.errores_artista().length == 0) {//se activa las validaciones
+            if(self.artistaVO.id()==0){
+                var parametros={                     
+                     callback:function(datos, estado, mensaje){
+                        if (estado=='ok') {
+                            self.filtro_artista("");
+                            self.consultar(1);
+                         /*   $('#modal_acciones').modal('hide');*/
+                            self.limpiar();
+                        }                     
+                     },//funcion para recibir la respuesta 
+                     url: self.url+'artista/',//url api
+                     parametros:self.artistaVO                        
+                };
+                //parameter =ko.toJSON(self.contratistaVO);
+                RequestFormData(parametros);
+            }else{                 
+                  var parametros={     
+                        metodo:'PUT',                
+                       callback:function(datos, estado, mensaje){
+                            if (estado=='ok') {
+                              self.filtro_artista("");
+                              self.consultar(1);
+                      /*        $('#modal_acciones').modal('hide');*/
+                              self.limpiar();
+                            } 
+                       },//funcion para recibir la respuesta 
+                       url: self.url+'artista/'+ self.artistaVO.id()+'/',
+                       parametros:self.artistaVO                        
+                  };
+                  RequestFormData(parametros);
+            }
+        } else {
+             ArtistaViewModel.errores_artista.showAllMessages();//mostramos las validacion
+        }
+    }
+
 	self.consultar = function(pagina){
 		if (pagina > 0){
 			self.filtro_artista.dato($('#txtBuscar').val());
@@ -43,4 +108,7 @@ function ArtistaViewModel() {
 }
 
 var artista = new ArtistaViewModel();
+
+ArtistaViewModel.errores_artista = ko.validation.group(artista.artistaVO);
+
 ko.applyBindings(artista);

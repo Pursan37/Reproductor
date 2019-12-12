@@ -25,16 +25,18 @@
 							<!-- Header -->
 								<header id="header">
 									<a href="{% url 'artista.inicio' %}" class="logo"><strong>Mi reproductor</strong></a>
-									<ul class="icons">
+									{% block acciones %}{% endblock acciones%}
+									<!-- <ul class="icons">
 										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
 										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-									</ul>
+									</ul> -->
 								</header>
 								<section>
 									<h2>{% block tituloPagina %}{% endblock tituloPagina %}</h2>
+									{% block insertar%}{%endblock insertar%}
 									{% block contenido %}{% endblock contenido %}
 									<div id='loading' style="display: none;">
           								<div class="pop-fondo"></div><img class="pop-imagen" src='{% static "images/iconoCargando.gif" %}')>
@@ -43,6 +45,9 @@
 					
 						</div>
 					</div>
+
+					
+
 
 				<!-- Sidebar -->
 					<div id="sidebar">
