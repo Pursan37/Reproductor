@@ -165,21 +165,20 @@ function Request(parametros) {
             _content: ko.toJSON(parametros.parametros)
         },
         url: parametros.url,
-        type: 'POST',
+        type: parametros.metodo,
         //contentType: "application/json; charset=utf-8",
         dataType: "json",
         beforeSend: function() {
             $('#loading').show();
         },
         success: function(response) {
-
-            //parametros.callback(response);
-            if (response.success == 'ok') {
-                parametros.callback(response.data, response.success, response.message);
+            // //parametros.callback(response);
+            if (response.status == 'success') {
+                parametros.callback(response.data, response.status, response.message);
                 if (parametros.alerta)
                     mensajeExitoso(response.message);
             } else {
-                parametros.callback(response.data, response.success, response.message);
+                parametros.callback(response.data, response.status, response.message);
                 if (parametros.alerta)
                     mensajeError(response.message);
             }
@@ -275,15 +274,14 @@ function RequestFormData(parametros) {
             $('#progressbar').show();
         },
         success: function(response) {
-
-            if (response.success == 'ok') {
-                parametros.callback(response.data, response.success, response.message);
-                if (parametros.alerta)
-                    mensajeExitoso(response.message);
+            if (response.status == 'success') {
+                parametros.callback(response.data, response.status, response.message);
+                // if (parametros.alerta)
+                //     mensajeExitoso(response.message);
             } else {
-                parametros.callback(response.data, response.success, response.message);
-                if (parametros.alerta)
-                    mensajeError(response.message);
+                parametros.callback(response.data, response.status, response.message);
+                // if (parametros.alerta)
+                //     mensajeError(response.message);
             }
 
             //parametros.callback(response);

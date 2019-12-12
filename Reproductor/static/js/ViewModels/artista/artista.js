@@ -43,12 +43,16 @@ function ArtistaViewModel() {
         if (ArtistaViewModel.errores_artista().length == 0) {//se activa las validaciones
             if(self.artistaVO.id()==0){
                 var parametros={                     
-                     callback:function(datos, estado, mensaje){
-                        if (estado=='ok') {
-                            self.filtro_artista("");
-                            self.consultar(1);
-                         /*   $('#modal_acciones').modal('hide');*/
+                     callback:function(datos, estado, mensaje){  
+                        if (estado=='success') {
                             self.limpiar();
+                            $("#mensajeExito").html(mensaje);
+                            $("#mensajeError").hide();
+                            $("#mensajeExito").show();
+                        }else{
+                            $("#mensajeError").html(mensaje);
+                            $("#mensajeError").show();
+                            $("#mensajeExito").hide();                          
                         }                     
                      },//funcion para recibir la respuesta 
                      url: self.url+'artista/',//url api
@@ -105,6 +109,15 @@ function ArtistaViewModel() {
         }
         return true;
     }
+
+  self.eliminarArtista = function (idArtista) {
+    //alert('eliminando el id ' + id);
+    var path =self.url+'artista/'+idArtista+'/';
+             var parameter = {};
+             RequestAnularOEliminar("Esta seguro que desea eliminar este artista?", path, parameter, function () {                 
+                 self.consultar(1);
+             })
+  }
 }
 
 var artista = new ArtistaViewModel();
