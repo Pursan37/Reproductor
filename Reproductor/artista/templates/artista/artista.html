@@ -19,18 +19,29 @@
 
 
 {% block contenido %}
+	      <div class="mensajeExitoso" id="mensajeExito">
+            
+          </div>
+          <div class="mensajeError" id="mensajeError">
+            
+          </div>
 	<div data-bind="visible: (listado() != null)">
 		<table>
 			<thead>
 				<tr>
 					<th>id</th>
 					<th>nombre</th>
+					<th>Opciones</th>
 				</tr>
 			</thead>
 			<tbody data-bind="foreach:{data:listado, as:'item'}">
 				<tr>
 					<td data-bind="text: item.id"></td>
 					<td data-bind="text: item.nombre"></td>
+					<td>
+						<a href="#" data-bind="click: function(){ $root.eliminarArtista(item.id) }"> Eliminar </a>
+						<a href="#"> Editar </a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

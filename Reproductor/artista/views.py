@@ -94,13 +94,15 @@ class ArtistaViewSet(viewsets.ModelViewSet):
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 
 	def destroy(self,request,*args,**kwargs):
+		#codigo para crer el punto de interrupcion
+		#import pdb; pdb.set_trace()
 		if request.method == 'DELETE':			
 			try:
 				instance = self.get_object()
 				self.perform_destroy(instance)
 				serializer = self.get_serializer(instance)
 				respuesta=Estructura.success('El artista ha sido eliminado exitosamente.',serializer.data)
-				return Response(respuesta, status=status.HTTP_204_NO_CONTENT)
+				return Response(respuesta, status=status.HTTP_202_ACCEPTED)
 			except Exception as e:
 				respuesta=Estructura.error500()				
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
