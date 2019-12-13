@@ -26,6 +26,22 @@ function AlbumViewModel() {
 
     };
 
+  self.consultar_artistas = function(pagina){
+    if (pagina > 0){
+      //self.filtro_album.dato($('#txtBuscar').val());
+      path = self.url+'artista/?format=json';
+            parameter = {};
+            RequestGet(function (datos, estado, mensage) {
+                if (datos!=null && datos.length > 0) {
+                    self.listado_artistas(datos); 
+                } else {
+                    self.listado_artistas([]);
+                }
+                cerrarLoading();
+            }, path, parameter,undefined,false);
+    }    
+  }
+
 	self.consultar = function(pagina){
 		if (pagina > 0){
 			self.filtro_album.dato($('#txtBuscar').val());
