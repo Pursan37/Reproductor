@@ -60,7 +60,7 @@ class AlbumViewSet(viewsets.ModelViewSet):
 				serializer = self.serializer_class(data=request.data,context={'request': request})
 
 				if serializer.is_valid():
-					serializer.save()
+					serializer.save(artista_id=request.data['artista_id'])
 					respuesta=Estructura.success('El album ha sido creado exitosamente.',serializer.data)
 					
 					return Response(respuesta,status=status.HTTP_201_CREATED)
@@ -68,6 +68,7 @@ class AlbumViewSet(viewsets.ModelViewSet):
 					respuesta=Estructura.error(serializer.errors)					
 					return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 			except Exception as e:
+				print(e)
 				respuesta=Estructura.error500()
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 

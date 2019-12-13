@@ -10,7 +10,7 @@ function AlbumViewModel() {
 	self.mensaje=ko.observable('');
 
 
-    self.listado_artistas = ko.observableArray([]);
+  self.listado_artistas = ko.observableArray([]);
 
    	self.filtro_album={
         dato:ko.observable(''),
