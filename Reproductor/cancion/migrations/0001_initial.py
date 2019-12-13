@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('artista', '0001_initial'),
+        # ('artista', '0001_initial'),
         ('album', '0001_initial'),
     ]
 
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('titulo', models.CharField(max_length=255)),
                 ('track_file', models.FileField(upload_to='tracks')),
                 ('album', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='album.Album')),
-                ('artista', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='artista.Artista')),
+                # ('artista', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='artista.Artista')),
             ],
             options={
                 'db_table': 'cancion',

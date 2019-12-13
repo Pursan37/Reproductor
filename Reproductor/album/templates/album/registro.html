@@ -25,7 +25,7 @@
               <input type="text" class="form-control" placeholder="Digite el nombre del album" data-bind='value:albumVO.nombre'></input>
               <br>
               <div class="form-group col-lg-4">
-                        <label>(*) Artistas</label>
+                        <label>(*) Artista</label>
                         <select class="form-control" data-bind="options: listado_artistas,
                                            optionsText: 'nombre', 
                                            optionsValue: 'id', 
@@ -39,8 +39,9 @@
          
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-bind="click:guardar">Guardar</button>
-            <br>
+            
           </div>
+          <br><br>
           <div class="mensajeExitoso" id="mensajeExito">
             
           </div>
