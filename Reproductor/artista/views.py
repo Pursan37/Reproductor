@@ -111,3 +111,7 @@ def inicioView(request):
 	return render(request,'artista/artista.html',{'modelo':'artista'})
 def registroView(request):
 	return render(request, 'artista/registro.html',{'modelo':'artista'})
+
+def edicionView(request,id):
+	artista = Artista.objects.get(id=id)
+	return render(request, 'artista/registro.html',{'modelo':'artista','id':id, 'nombre':artista.nombre})

@@ -40,7 +40,7 @@
 					<td data-bind="text: item.nombre"></td>
 					<td>
 						<a href="#" data-bind="click: function(){ $root.eliminarArtista(item.id) }"> Eliminar </a>
-						<a href="#"> Editar </a>
+						<a href="#" data-bind="attr:{href:'../edicion/' + item.id }"> Editar </a>
 					</td>
 				</tr>
 			</tbody>

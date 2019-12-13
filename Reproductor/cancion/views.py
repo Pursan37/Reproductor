@@ -69,6 +69,7 @@ class CancionViewSet(viewsets.ModelViewSet):
 					
 					return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 			except Exception as e:
+				print (e)
 				respuesta=Estructura.error500()
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 

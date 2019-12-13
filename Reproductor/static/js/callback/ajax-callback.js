@@ -265,7 +265,7 @@ function RequestFormData(parametros) {
             return xhr;
         },
         url: parametros.url,
-        type: 'POST',
+        type: parametros.metodo,
         contentType: false,
         data: forData,
         processData: false,
