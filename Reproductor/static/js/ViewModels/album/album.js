@@ -9,9 +9,21 @@ function AlbumViewModel() {
 	self.listado=ko.observableArray([]);
 	self.mensaje=ko.observable('');
 
+
+  self.listado_artistas = ko.observableArray([]);
+
    	self.filtro_album={
         dato:ko.observable(''),
         id:ko.observable(''),
+    };
+    
+    
+
+    self.albumVO={
+        id:ko.observable(0),
+        nombre:ko.observable('').extend({ required: { message: ' Digite el nombre del album.' } }),
+        artista_id:ko.observable('').extend({ required: { message: ' Selecione al artista.' } })
+
     };
 
 	self.consultar = function(pagina){
@@ -42,6 +54,15 @@ function AlbumViewModel() {
         }
         return true;
     }
+
+    self.eliminarAlbum = function (idAlbum) {
+   // alert('eliminando el id ' + idAlbum);
+    var path =self.url+'album/'+idAlbum+'/';
+             var parameter = {};
+             RequestAnularOEliminar("Esta seguro que desea eliminar este album?", path, parameter, function () {                 
+                 self.consultar(1);
+             })
+  }
 }
 
 

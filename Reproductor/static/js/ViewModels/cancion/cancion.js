@@ -42,7 +42,15 @@ function CancionViewModel() {
             self.consultar(1);
         }
         return true;
-    }    
+    }
+    self.eliminarCancion = function (idCancion) {
+   // alert('eliminando el id ' + idAlbum);
+    var path =self.url+'cancion/'+idCancion+'/';
+             var parameter = {};
+             RequestAnularOEliminar("Esta seguro que desea eliminar esta cancion?", path, parameter, function () {                 
+                 self.consultar(1);
+             })
+  }    
 }
 
 var cancion = new CancionViewModel();

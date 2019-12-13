@@ -172,6 +172,7 @@ function Request(parametros) {
             $('#loading').show();
         },
         success: function(response) {
+
             // //parametros.callback(response);
             if (response.status == 'success') {
                 parametros.callback(response.data, response.status, response.message);
@@ -189,7 +190,7 @@ function Request(parametros) {
             $('#loading').hide();
         },
         error: function(response) {
-
+           
             mensajeError(response.responseJSON.message);
 
             $('#loading').hide();

@@ -5,6 +5,17 @@
 
 {% block tituloPagina %}Albumnes{% endblock tituloPagina %}
 
+{% block acciones%}
+<ul class="icons">
+<li>
+    <a href="{% url 'album.registro' %}" data-bind="click: " data-placement="right" data-toggle="tooltip" data-original-title="Agregar nuevo registro">
+         <i class="fa fa-plus" style="font-size: 20px;"></i>
+    </a>
+</li>
+      
+
+</ul>
+{% endblock acciones%}
 
 {% block contenido %}
 <div data-bind="visible: (listado() != null)">
@@ -14,6 +25,7 @@
 					<th>id</th>
 					<th>nombre</th>
 					<th>artista</th>
+					<th>opciones</th>
 				</tr>
 			</thead>
 			<tbody data-bind="foreach:{data:listado, as:'item'}">
@@ -21,6 +33,10 @@
 					<td data-bind="text: item.id"></td>
 					<td data-bind="text: item.nombre"></td>
 					<td data-bind="text: item.artista.nombre"></td>
+					<td>
+						<a href="#" data-bind="click: function(){ $root.eliminarAlbum(item.id) }"> Eliminar </a>
+						<a href="#"> Editar </a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

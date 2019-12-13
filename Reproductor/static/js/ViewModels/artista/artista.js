@@ -111,7 +111,7 @@ function ArtistaViewModel() {
     }
 
   self.eliminarArtista = function (idArtista) {
-    //alert('eliminando el id ' + id);
+   // alert('eliminando el id ' + idArtista);
     var path =self.url+'artista/'+idArtista+'/';
              var parameter = {};
              RequestAnularOEliminar("Esta seguro que desea eliminar este artista?", path, parameter, function () {                 

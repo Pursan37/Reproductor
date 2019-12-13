@@ -60,15 +60,15 @@ class AlbumViewSet(viewsets.ModelViewSet):
 				serializer = self.serializer_class(data=request.data,context={'request': request})
 
 				if serializer.is_valid():
-					serializer.save()
+					serializer.save(artista_id=request.data['artista_id'])
 					respuesta=Estructura.success('El album ha sido creado exitosamente.',serializer.data)
 					
 					return Response(respuesta,status=status.HTTP_201_CREATED)
 				else:
-					respuesta=Estructura.error(serializer.errors)
-					
+					respuesta=Estructura.error(serializer.errors)					
 					return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 			except Exception as e:
+				print(e)
 				respuesta=Estructura.error500()
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 
@@ -101,11 +101,13 @@ class AlbumViewSet(viewsets.ModelViewSet):
 				self.perform_destroy(instance)
 				serializer = self.get_serializer(instance)
 				respuesta=Estructura.success('El album ha sido eliminado exitosamente.',serializer.data)
-				return Response(respuesta, status=status.HTTP_204_NO_CONTENT)
+				return Response(respuesta, status=status.HTTP_202_ACCEPTED)
 			except Exception as e:
 				respuesta=Estructura.error500()				
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 
 def inicioView(request):
 	return render(request,'album/album.html',{'modelo':'album'})
+def registroView(request):
+	return render(request, 'album/registro.html',{'modelo':'album'})	
 # Create your views here.
