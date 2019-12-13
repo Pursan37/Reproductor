@@ -1,0 +1,60 @@
+{% extends 'page.html' %}
+{% load staticfiles %}
+
+{% block title %}Registro{% endblock title %}
+
+{% block tituloPagina %}Registro de artistas{% endblock tituloPagina %}
+
+{% block acciones%}
+<ul class="icons">
+<li>
+    <a href="{% url 'artista.registro' %}" data-bind="click: " data-placement="right" data-toggle="tooltip" data-original-title="Agregar nuevo registro">
+         <i class="fa fa-plus" style="font-size: 20px;"></i>
+    </a>
+</li>
+                
+        
+</ul>
+{% endblock acciones%}
+
+{% block insertar %}
+          
+            <form action="." method="post" enctype="multipart/form-data" id="form-wizard">{% csrf_token %}
+            <!-- <input type="hidden" name="csrfmiddlewaretoken" value="WScMBnv20fitp9IcTNVt6MW2FWd4Fr6J">        -->
+                      
+                    <input type="text" class="form-control" placeholder="Digite el nombre del artista" data-bind='value:artistaVO.nombre'></input>        
+                  
+            </form>
+            <!-- End Account2 Form -->                    
+         
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bind="click:guardar">Guardar</button>
+          </div>
+          <div class="mensajeExitoso" id="mensajeExito">
+            
+          </div>
+          <div class="mensajeError" id="mensajeError">
+            
+          </div>
+
+   
+{% endblock insertar%}
+
+
+
+{%block imports %}
+	<script type="text/javascript" src='{% static "js/ViewModels/artista/artista.js" %}'></script>
+
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        artista.consultar(1);//iniciamos la primera funcion
+        
+        
+    });  
+
+  </script>
+{% endblock imports %}
+
+

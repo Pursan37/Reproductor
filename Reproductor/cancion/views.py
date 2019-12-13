@@ -101,7 +101,7 @@ class CancionViewSet(viewsets.ModelViewSet):
 				self.perform_destroy(instance)
 				serializer = self.get_serializer(instance)
 				respuesta=Estructura.success('La cancion ha sido eliminado exitosamente.',serializer.data)
-				return Response(respuesta, status=status.HTTP_204_NO_CONTENT)
+				return Response(respuesta, status=status.HTTP_202_ACCEPTED)
 			except Exception as e:
 				respuesta=Estructura.error500()				
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
