@@ -5,6 +5,17 @@
 
 {% block tituloPagina %}Canciones{% endblock tituloPagina %}
 
+{% block acciones%}
+<ul class="icons">
+<li>
+    <a href="{% url 'cancion.registro' %}" data-bind="click: " data-placement="right" data-toggle="tooltip" data-original-title="Agregar nuevo registro">
+         <i class="fa fa-plus" style="font-size: 20px;"></i>
+    </a>
+</li>
+      
+
+</ul>
+{% endblock acciones%}
 
 {% block contenido %}
 <div data-bind="visible: (listado() != null)">

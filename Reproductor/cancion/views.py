@@ -69,7 +69,6 @@ class CancionViewSet(viewsets.ModelViewSet):
 					
 					return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 			except Exception as e:
-				print (e)
 				respuesta=Estructura.error500()
 				return Response(respuesta, status=status.HTTP_400_BAD_REQUEST)
 
@@ -109,3 +108,5 @@ class CancionViewSet(viewsets.ModelViewSet):
 
 def inicioView(request):
 	return render(request,'cancion/cancion.html',{'modelo':'cancion'})
+def registroView(request):
+	return render(request, 'cancion/registro.html',{'modelo':'cancion'})		

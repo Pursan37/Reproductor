@@ -1,5 +1,5 @@
 from django.db import models
-from artista.models import Artista
+# from artista.models import Artista
 from album.models import Album
 from django.utils.safestring import mark_safe
 

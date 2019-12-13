@@ -10,7 +10,7 @@ function AlbumViewModel() {
 	self.mensaje=ko.observable('');
 
 
-  self.listado_artistas = ko.observableArray([]);
+    self.listado_artistas = ko.observableArray([]);
 
    	self.filtro_album={
         dato:ko.observable(''),
@@ -26,6 +26,55 @@ function AlbumViewModel() {
 
     };
 
+    self.limpiar=function(){                  
+        self.albumVO.id(0);
+        self.albumVO.nombre('');
+        self.albumVO.artista_id('');
+    }    
+
+  self.guardar=function(){
+
+        if (AlbumViewModel.errores_album().length == 0) {//se activa las validaciones
+            if(self.albumVO.id()==0){
+                var parametros={                     
+                     callback:function(datos, estado, mensaje){  
+                        if (estado=='success') {
+                            self.limpiar();
+                            $("#mensajeExito").html(mensaje);
+                            $("#mensajeError").hide();
+                            $("#mensajeExito").show();
+                        }else{
+                            $("#mensajeError").html(mensaje);
+                            $("#mensajeError").show();
+                            $("#mensajeExito").hide();                          
+                        }                     
+                     },//funcion para recibir la respuesta 
+                     url: self.url+'album/',//url api
+                     parametros:self.albumVO                        
+                };
+                //parameter =ko.toJSON(self.contratistaVO);
+                RequestFormData(parametros);
+            }else{                 
+                  var parametros={     
+                        metodo:'PUT',                
+                       callback:function(datos, estado, mensaje){
+                            if (estado=='success') {
+                              self.filtro_album("");
+                              self.consultar(1);
+                      /*        $('#modal_acciones').modal('hide');*/
+                              self.limpiar();
+                            } 
+                       },//funcion para recibir la respuesta 
+                       url: self.url+'album/'+ self.albumVO.id()+'/',
+                       parametros:self.albumVO                        
+                  };
+                  RequestFormData(parametros);
+            }
+        } else {
+             ArtistaViewModel.errores_artista.showAllMessages();//mostramos las validacion
+        }
+  }
+
   self.consultar_artistas = function(pagina){
     if (pagina > 0){
       //self.filtro_album.dato($('#txtBuscar').val());
@@ -40,7 +89,7 @@ function AlbumViewModel() {
                 cerrarLoading();
             }, path, parameter,undefined,false);
     }    
-  }
+  } 
 
 	self.consultar = function(pagina){
 		if (pagina > 0){
@@ -83,4 +132,5 @@ function AlbumViewModel() {
 
 
 var album = new AlbumViewModel();
+AlbumViewModel.errores_album = ko.validation.group(album.albumVO);
 ko.applyBindings(album);
