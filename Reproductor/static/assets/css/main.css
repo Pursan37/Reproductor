@@ -2271,3 +2271,24 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
+
+.mensajeExitoso{
+  background-color: #01DF3A;
+  border: 1px solid #44546A;
+  border-radius: 5px;
+  height: 80%;
+  width: 80%;
+  cursor:pointer;
+  color:white;
+  display: None;
+}
+.mensajeError{
+  background-color: #FFBF00;
+  border: 1px solid #44546A;
+  border-radius: 5px;
+  height: 80%;
+  width: 80%;
+  cursor:pointer;
+  color:white;
+  display: None;
+}
