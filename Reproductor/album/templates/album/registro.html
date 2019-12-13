@@ -3,7 +3,7 @@
 
 {% block title %}Registro{% endblock title %}
 
-{% block tituloPagina %}Registro de artistas{% endblock tituloPagina %}
+{% block tituloPagina %}Registro de album{% endblock tituloPagina %}
 
 {% block acciones%}
 <ul class="icons">
@@ -22,14 +22,14 @@
             <form action="." method="post" enctype="multipart/form-data" id="form-wizard">{% csrf_token %}
             <!-- <input type="hidden" name="csrfmiddlewaretoken" value="WScMBnv20fitp9IcTNVt6MW2FWd4Fr6J">        -->
                       
-              <input type="text" class="form-control" placeholder="Digite el nombre del artista" data-bind='value:albumVO.nombre'></input>
+              <input type="text" class="form-control" placeholder="Digite el nombre del album" data-bind='value:albumVO.nombre'></input>
               <br>
               <div class="form-group col-lg-4">
                         <label>(*) Artistas</label>
                         <select class="form-control" data-bind="options: listado_artistas,
                                            optionsText: 'nombre', 
                                            optionsValue: 'id', 
-                                           optionsCaption: 'Seleccione el estado del proyecto - servicio...',
+                                           optionsCaption: 'Seleccione el artista',
                                            value: albumVO.artista_id">
                         </select>                           
                       </div>
@@ -54,13 +54,13 @@
 
 
 {%block imports %}
-	<script type="text/javascript" src='{% static "js/ViewModels/artista/artista.js" %}'></script>
+	<script type="text/javascript" src='{% static "js/ViewModels/album/album.js" %}'></script>
 
   <script type="text/javascript">
 
     $(document).ready(function () {
 
-        artista.consultar(1);//iniciamos la primera funcion
+        album.consultar_artistas(1);//iniciamos la primera funcion
         
         
     });  
