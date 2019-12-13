@@ -34,7 +34,11 @@
                         </select>                           
                       </div> 
                     <br>
-                    <input type="file" class="form-control" data-bind="fileData:{value:cancionVO.track_file,allowedFileExtensions: ['mp3']}"/>
+<!--                     <input type="file" class="form-control" 
+                    data-bind="fileData:{value:cancionVO.track_file,allowedFileExtensions: ['mp3']}"/> -->
+
+                <input type="file" class="note-image-input" id="archivo" name="archivo" data-bind="fileData:{value:cancionVO.track_file, allowedFileExtensions: ['mp3']}"/>
+                <input type="hidden" data-bind="value:cancionVO.track_file"/>
                         
                   
             </form>
@@ -58,6 +62,7 @@
 
 
 {%block imports %}
+  <script type="text/javascript" src='{% static "js/fileinput.js" %}'></script>
 	<script type="text/javascript" src='{% static "js/ViewModels/cancion/cancion.js" %}'></script>
 
   <script type="text/javascript">
