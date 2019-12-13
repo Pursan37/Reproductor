@@ -62,19 +62,18 @@ function ArtistaViewModel() {
                 RequestFormData(parametros);
             }else{                 
                   var parametros={     
-                        metodo:'PUT',                
-                       callback:function(datos, estado, mensaje){  
-                        if (estado=='success') {
-                            self.limpiar();
-                            $("#mensajeExito").html(mensaje);
-                            $("#mensajeError").hide();
-                            $("#mensajeExito").show();
-                        }else{
-                            $("#mensajeError").html(mensaje);
-                            $("#mensajeError").show();
-                            $("#mensajeExito").hide();                          
-                        }                     
-                     },//funcion para recibir la respuesta 
+                        metodo:'PUT',
+                       callback:function(datos, estado, mensaje){
+                            if (estado=='success') {
+                              $("#mensajeExito").html(mensaje);
+                              $("#mensajeError").hide();
+                              $("#mensajeExito").show();
+                            }else{
+                              $("#mensajeError").html(mensaje);
+                              $("#mensajeError").show();
+                              $("#mensajeExito").hide();                               
+                            } 
+                       },//funcion para recibir la respuesta 
                        url: self.url+'artista/'+ self.artistaVO.id()+'/',
                        parametros:self.artistaVO                        
                   };
@@ -122,41 +121,6 @@ function ArtistaViewModel() {
                  self.consultar(1);
              })
   }
-
-
-    self.modificarArtista = function (idArtista) {
-  
-        self.limpiar();
-
-        path =self.url+'artista/';
-        parameter = { };
-        RequestGet(function (datos, estado, mensage) {
-            self.nombre(datos.nombre);                
-            self.consultar_por_id(idArtista);
-
-        }, path, parameter,undefined,false);        
-    }
-
-    self.consultar_por_id = function (idArtista) {
-
-      path =self.url+'artista/'+idArtista+'/?format=json';
-         RequestGet(function (results,count) {
-
-            // if(results.mcontrato){
-            //   self.consultar_macro_contrato(results.id , results.mcontrato.id); 
-            // }             
-
-             self.artistaVO.id(results.id);
-             self.artistaVO.nombre(results.nombre);
-        
-             $('#').show();
-             
-
-             cerrarLoading();
-         }, path, parameter,undefined,false);
-     }   
-
-
 }
 
 var artista = new ArtistaViewModel();

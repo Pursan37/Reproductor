@@ -26,16 +26,15 @@ function CancionViewModel() {
 
     self.limpiar=function(){                  
         self.cancionVO.id(0);
-        self.caniconVO.titulo('');
+        self.cancionVO.titulo('');
         self.cancionVO.track_file('');
-        self.cancionVO.artista_id('');
+        self.cancionVO.album_id('');
     }
 
     self.guardar=function(){
 
         if (CancionViewModel.errores_cancion().length == 0) {//se activa las validaciones
             if(self.cancionVO.id()==0){
-                alert(cancionVO);
                 var parametros={                     
                      callback:function(datos, estado, mensaje){  
                         if (estado=='success') {

@@ -49,8 +49,12 @@
 
     $(document).ready(function () {
 
-        artista.consultar(1);//iniciamos la primera funcion
-        
+        //artista.consultar(1);//iniciamos la primera funcion
+        if ({{id}}){
+          artista.artistaVO.id({{id}});
+          artista.artistaVO.nombre('{{nombre}}');
+        }
+        // contratoVigencia.list_vigencias({{id_contrato}});
         
     });  
 
